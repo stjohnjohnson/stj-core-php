@@ -70,6 +70,7 @@ class Route {
   /**
    * Attempts to match a given 'route' against the current URI
    *
+   * @note :var is required and ::var is optional
    * @note /request/view/:id/ against /request/view/15
    *       will return true and give $params['id'] = 15
    *
