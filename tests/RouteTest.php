@@ -163,8 +163,11 @@ class RouteTest extends PHPUnit_Framework_TestCase {
     $cases[] = array('/news/', '/news/:id', false, array());
 
     // Success
+    $cases[] = array('/news/', '/news/::id', true, array());
     $cases[] = array('/users/sample/', '/users/', true, array());
     $cases[] = array('/users/sample/', '/users/:name', true, array('name' => 'sample'));
+    $cases[] = array('/users/sample/', '/users/::name', true, array('name' => 'sample'));
+    $cases[] = array('/users/', '/users/::name', true, array());
     $cases[] = array('/users/sample/edit/', '/users/:name/:action', true, array('name' => 'sample', 'action' => 'edit'));
 
     return $cases;

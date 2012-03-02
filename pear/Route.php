@@ -84,7 +84,10 @@ class Route {
     self::reload();
 
     $base = '/' . implode('/', self::$_values) . '/';
-    $match = preg_replace('/\\\[:](\w+)/', '(?<\1>[^\/]+)', preg_quote($route, '/'));
+    // Optional first
+    $match = preg_replace('/\\\[:]\\\[:](\w+)/', '(?<\1>[^\/]+)?', preg_quote($route, '/'));
+    // Required
+    $match = preg_replace('/\\\[:](\w+)/', '(?<\1>[^\/]+)', $match);
     $count = preg_match("/^$match/", $base, $params);
 
     // Remove extra fields
