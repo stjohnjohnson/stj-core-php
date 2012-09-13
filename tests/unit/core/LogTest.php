@@ -1,20 +1,18 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
-use PHPUnit_Framework_TestCase,
+use UnitTest,
     Exception,
     ReflectionMethod,
     ReflectionProperty;
-
-require_once 'pear/Log.php';
 
 /**
  * Log Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class LogTest extends PHPUnit_Framework_TestCase {
+class LogTest extends UnitTest {
   public static $newFile = '/tmp/LogTest.log';
   public static $oldLevel = null;
   public static $oldFile = null;

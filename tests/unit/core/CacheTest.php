@@ -1,17 +1,15 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
-use PHPUnit_Framework_TestCase;
-
-require_once 'pear/Cache.php';
+use UnitTest;
 
 /**
  * Cache Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class CacheTest extends PHPUnit_Framework_TestCase {
+class CacheTest extends UnitTest {
   /**
    * @test
    * @group Cache
@@ -54,7 +52,7 @@ class CacheTest extends PHPUnit_Framework_TestCase {
 
   /**
    * Data Provider for Cache Tests
-   * 
+   *
    * @return array
    */
   public function cacheProvider() {

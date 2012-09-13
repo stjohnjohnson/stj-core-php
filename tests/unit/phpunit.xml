@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="bootstrap.php"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         strict="true"
+         forceCoversAnnotation="true">
+
+  <testsuites>
+    <testsuite name="Core Unit Tests">
+      <directory>./core</directory>
+    </testsuite>
+
+    <testsuite name="MVC Unit Tests">
+      <directory>./mvc</directory>
+    </testsuite>
+  </testsuites>
+
+  <groups>
+    <exclude>
+    </exclude>
+  </groups>
+
+  <filter>
+    <whitelist>
+      <directory suffix=".php">../../pear</directory>
+    </whitelist>
+  </filter>
+
+  <logging>
+    <log type="coverage-html" target="../../coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70" />
+  </logging>
+
+  <listeners>
+    <listener class="PrettyListener" file="../phpunit/PrettyListener.php"></listener>
+  </listeners>
+</phpunit>

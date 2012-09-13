@@ -1,6 +1,6 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
 /**
  * Dead Simple Logging mechanism

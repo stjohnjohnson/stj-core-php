@@ -1,17 +1,15 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
-use PHPUnit_Framework_TestCase;
-
-require_once 'pear/Route.php';
+use UnitTest;
 
 /**
  * Route Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class RouteTest extends PHPUnit_Framework_TestCase {
+class RouteTest extends UnitTest {
   /**
    * @test
    * @group Route

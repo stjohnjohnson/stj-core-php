@@ -1,6 +1,6 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
 /**
  * Converts fancy / URLs into an accessible array

@@ -1,17 +1,15 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
-use PHPUnit_Framework_TestCase;
-
-require_once 'pear/HTML.php';
+use UnitTest;
 
 /**
  * HTML Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class HTMLTest extends PHPUnit_Framework_TestCase {
+class HTMLTest extends UnitTest {
   /**
    * @test
    * @group HTML

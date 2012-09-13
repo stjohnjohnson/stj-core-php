@@ -1,18 +1,16 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
-use PHPUnit_Framework_TestCase,
+use UnitTest,
     ReflectionMethod;
-
-require_once 'pear/Autoload.php';
 
 /**
  * Autoload Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class AutoloadTest extends PHPUnit_Framework_TestCase {
+class AutoloadTest extends UnitTest {
   /**
    * @test
    * @group Autoload

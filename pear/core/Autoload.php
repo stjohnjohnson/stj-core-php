@@ -1,6 +1,6 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
 /**
  * Auto-magically determines Path/Filename based on Class

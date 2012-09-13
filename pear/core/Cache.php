@@ -1,6 +1,6 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
 require_once 'Log.php';
 use stj\Log;

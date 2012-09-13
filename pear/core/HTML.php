@@ -1,6 +1,6 @@
 <?php
 
-namespace stj;
+namespace STJ\Core;
 
 /**
  * Functions to assist in dynamically building HTML
