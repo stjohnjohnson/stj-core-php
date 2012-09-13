@@ -8,6 +8,9 @@ namespace STJ\Core;
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
 class Autoload {
+  const DIR_SEP = DIRECTORY_SEPARATOR;
+  const NAME_SEP = '\\';
+
   /**
    * Automatically includes file based on class name, example:
    * \test\Sample => test/Sample.php
@@ -42,24 +45,24 @@ class Autoload {
    */
   public static function classToFile($class, $fileEnding = '.php') {
     // We want the path and class seperate
-    $namespace = explode('\\', $class);
+    $namespace = explode(self::NAME_SEP, $class);
     $classname = array_pop($namespace);
 
     // Compress namespace back
-    $namespace = implode('/', $namespace);
+    $namespace = implode(self::DIR_SEP, $namespace);
 
     // First try, check for standard folder structure
     // Second try, lowercase folder structure - Class is still initial case
     // Final try, all lowercase
     $files = array(
-        $namespace . '/' . $classname . $fileEnding,
-        strtolower($namespace) . '/' . $classname . $fileEnding,
-        strtolower($namespace) . '/' . strtolower($classname) . $fileEnding
+        $namespace . self::DIR_SEP . $classname . $fileEnding,
+        strtolower($namespace) . self::DIR_SEP . $classname . $fileEnding,
+        strtolower($namespace) . self::DIR_SEP . strtolower($classname) . $fileEnding
     );
 
     // Check if each of the files exist
     foreach ($files as $filename) {
-      $filename = ltrim($filename, '/');
+      $filename = ltrim($filename, self::DIR_SEP);
       if (static::_isFile($filename)) {
         return $filename;
       }

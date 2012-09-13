@@ -2,20 +2,18 @@
 
 namespace STJ\Core;
 
-use UnitTest;
-
 /**
  * HTML Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class HTMLTest extends UnitTest {
+class HTMLTest extends \UnitTest {
   /**
    * @test
    * @group HTML
    * @group HTML.url
    * @dataProvider providerUrl
-   * @covers stj\HTML
+   * @covers STJ\Core\HTML
    */
   public function url($value, $base, array $routes = array(), array $args = array(), $fragment = '') {
     $this->assertEquals($value, HTML::url($base, $routes, $args, $fragment));
@@ -40,7 +38,7 @@ class HTMLTest extends UnitTest {
    * @test
    * @group HTML
    * @group HTML.node
-   * @covers stj\HTML
+   * @covers STJ\Core\HTML
    */
   public function node() {
     $this->assertEquals('<test attr="value" />',
@@ -54,7 +52,7 @@ class HTMLTest extends UnitTest {
    * @test
    * @group HTML
    * @group HTML.option
-   * @covers stj\HTML
+   * @covers STJ\Core\HTML
    */
   public function option() {
     $this->assertEquals('<option value="value">title</option>',
@@ -69,7 +67,7 @@ class HTMLTest extends UnitTest {
    * @group HTML
    * @group HTML.select
    * @dataProvider providerSelect
-   * @covers stj\HTML
+   * @covers STJ\Core\HTML
    */
   public function select($expected, $array, $selected = null, $blank = false, array $additional = array()) {
     $this->assertEquals($expected, HTML::select($array, $selected, $blank, $additional));

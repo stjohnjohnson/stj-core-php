@@ -25,7 +25,7 @@ spl_autoload_register(function($class) {
   $namespace = strtolower($namespace);
 
   // Try to load file
-  var_dump("$namespace/$classname.php");
+  //var_dump("$namespace/$classname.php");
   @include "$namespace/$classname.php";
 });
 

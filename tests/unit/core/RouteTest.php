@@ -2,19 +2,17 @@
 
 namespace STJ\Core;
 
-use UnitTest;
-
 /**
  * Route Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class RouteTest extends UnitTest {
+class RouteTest extends \UnitTest {
   /**
    * @test
    * @group Route
    * @group Route.reload
-   * @covers stj\Route
+   * @covers STJ\Core\Route
    */
   public function reload() {
     $_SERVER['REQUEST_URI'] = '/resource/class/action/id/?asdsd';
@@ -43,7 +41,7 @@ class RouteTest extends UnitTest {
    * @test
    * @group Route
    * @group Route.get
-   * @covers stj\Route
+   * @covers STJ\Core\Route
    * @dataProvider getProvider
    */
   public function get($uri, $params) {
@@ -91,7 +89,7 @@ class RouteTest extends UnitTest {
    * @test
    * @group Route
    * @group Route.set
-   * @covers stj\Route
+   * @covers STJ\Core\Route
    * @dataProvider setProvider
    */
   public function set($uri, $index, $set, $params) {
@@ -133,7 +131,7 @@ class RouteTest extends UnitTest {
    * @test
    * @group Route
    * @group Route.match
-   * @covers stj\Route
+   * @covers STJ\Core\Route
    * @dataProvider matchProvider
    */
   public function match($uri, $match, $bool, $array) {
@@ -162,6 +160,8 @@ class RouteTest extends UnitTest {
 
     // Success
     $cases[] = array('/news/', '/news/::id', true, array());
+    $cases[] = array('/news/14', '/news/::id/::action', true, array('id' => 14));
+    $cases[] = array('/news/14/edit', '/news/::id/::action', true, array('id' => 14, 'action' => 'edit'));
     $cases[] = array('/users/sample/', '/users/', true, array());
     $cases[] = array('/users/sample/', '/users/:name', true, array('name' => 'sample'));
     $cases[] = array('/users/sample/', '/users/::name', true, array('name' => 'sample'));

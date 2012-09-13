@@ -2,19 +2,17 @@
 
 namespace STJ\Core;
 
-use UnitTest;
-
 /**
  * Cache Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class CacheTest extends UnitTest {
+class CacheTest extends \UnitTest {
   /**
    * @test
    * @group Cache
    * @group Cache.store
-   * @covers stj\Cache
+   * @covers STJ\Core\Cache
    * @dataProvider cacheProvider
    */
   public function store($key, $value) {
@@ -26,7 +24,7 @@ class CacheTest extends UnitTest {
    * @test
    * @group Cache
    * @group Cache.retrieve
-   * @covers stj\Cache
+   * @covers STJ\Core\Cache
    * @dataProvider cacheProvider
    */
   public function retrieve($key, $value) {
@@ -39,7 +37,7 @@ class CacheTest extends UnitTest {
    * @test
    * @group Cache
    * @group Cache.delete
-   * @covers stj\Cache
+   * @covers STJ\Core\Cache
    * @dataProvider cacheProvider
    */
   public function delete($key, $value) {

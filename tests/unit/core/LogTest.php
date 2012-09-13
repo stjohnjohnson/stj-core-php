@@ -2,8 +2,7 @@
 
 namespace STJ\Core;
 
-use UnitTest,
-    Exception,
+use Exception,
     ReflectionMethod,
     ReflectionProperty;
 
@@ -12,7 +11,7 @@ use UnitTest,
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class LogTest extends UnitTest {
+class LogTest extends \UnitTest {
   public static $newFile = '/tmp/LogTest.log';
   public static $oldLevel = null;
   public static $oldFile = null;
@@ -61,7 +60,7 @@ class LogTest extends UnitTest {
    */
   private function assertFileContainsRegex($type, $message) {
     $contents = trim(file_get_contents(self::$newFile));
-    $this->assertRegExp('/\[\d{2}-\w+-\d{4} \d+:\d{2}:\d{2}\] \[' . $type . '\] ' . $message . '/', $contents);
+    $this->assertRegExp('/\[\d{2}-\w+-\d{4} \d+:\d{2}:\d{2}(| UTC)\] \[' . $type . '\] ' . $message . '/', $contents);
     self::clearLog();
   }
 
@@ -69,7 +68,7 @@ class LogTest extends UnitTest {
    * @test
    * @group Log
    * @group Log.storeLimits
-   * @covers stj\Log
+   * @covers STJ\Core\Log
    * @dataProvider storeLimitsProvider
    */
   public function storeLimits($input, $output) {
@@ -109,7 +108,7 @@ class LogTest extends UnitTest {
    * @test
    * @group Log
    * @group Log.limits
-   * @covers stj\Log
+   * @covers STJ\Core\Log
    * @dataProvider limitsProvider
    */
   public function limits($level, $count) {
@@ -160,7 +159,7 @@ class LogTest extends UnitTest {
    * @test
    * @group Log
    * @group Log.write
-   * @covers stj\Log
+   * @covers STJ\Core\Log
    * @dataProvider writeProvider
    */
   public function write($object, $expected, $type = Log::INFO) {
@@ -169,13 +168,13 @@ class LogTest extends UnitTest {
 
     // Make method available
     $method = new ReflectionMethod(
-      'stj\\Log', '_write'
+      'STJ\\Core\\Log', '_write'
     );
     $method->setAccessible(true);
 
     // Make label available
     $property = new ReflectionProperty(
-      'stj\\Log', '_LABELS'
+      'STJ\\Core\\Log', '_LABELS'
     );
     $property->setAccessible(true);
     $translate = $property->getValue();

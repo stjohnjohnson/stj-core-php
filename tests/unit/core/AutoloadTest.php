@@ -2,20 +2,19 @@
 
 namespace STJ\Core;
 
-use UnitTest,
-    ReflectionMethod;
+use ReflectionMethod;
 
 /**
  * Autoload Test
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
-class AutoloadTest extends UnitTest {
+class AutoloadTest extends \UnitTest {
   /**
    * @test
    * @group Autoload
    * @group Autoload.caseSensitive
-   * @covers stj\Autoload
+   * @covers STJ\Core\Autoload
    */
   public function caseSensitive() {
     // Check normal case
@@ -43,7 +42,7 @@ class AutoloadTest extends UnitTest {
    * @test
    * @group Autoload
    * @group Autoload.isFile
-   * @covers stj\Autoload
+   * @covers STJ\Core\Autoload
    */
   public function isFile() {
     // Put dummy class
@@ -51,7 +50,7 @@ class AutoloadTest extends UnitTest {
     file_put_contents($filename, '<?php class AutoloadExists {}');
 
     $method = new ReflectionMethod(
-      'stj\\Autoload', '_isFile'
+      'STJ\\Core\\Autoload', '_isFile'
     );
     $method->setAccessible(true);
 
@@ -66,7 +65,7 @@ class AutoloadTest extends UnitTest {
    * @test
    * @group Autoload
    * @group Autoload.load
-   * @covers stj\Autoload
+   * @covers STJ\Core\Autoload
    */
   public function load() {
     set_include_path(ini_get('include_path') . ':/tmp');

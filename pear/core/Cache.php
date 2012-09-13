@@ -2,9 +2,6 @@
 
 namespace STJ\Core;
 
-require_once 'Log.php';
-use stj\Log;
-
 /**
  * Prevents repetive use of APC when we can instead hold it in memory
  *
