@@ -9,7 +9,10 @@ use STJ\Core\Route,
     ReflectionMethod;
 
 /**
- * Web Controller that uses functions as page actions
+ * Web Controller
+ *
+ * Generates html page based on layout and view files.  Actions are
+ * based on function names.
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */

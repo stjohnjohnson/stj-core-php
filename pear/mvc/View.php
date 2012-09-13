@@ -6,7 +6,9 @@ use STJ\Core\Autoload,
     Exception;
 
 /**
- * Simple View engine from phtml files
+ * View Engine
+ *
+ * Generates HTML text by passing data to dynamic pHTML files
  *
  * @see https://github.com/stjohnjohnson/stj-core-php
  */
