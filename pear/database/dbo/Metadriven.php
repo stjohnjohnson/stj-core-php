@@ -78,6 +78,18 @@ abstract class Metadriven extends Stateful {
   }
 
   /**
+   * What are the trackable properties
+   *
+   * @return array
+   *   List of properties
+   */
+  public function getProperties() {
+    $fields = static::_getMetaFields(get_class($this));
+
+    return array_keys($fields);
+  }
+
+  /**
    * Get MySQL Datatype of a Property
    *
    * @param string $property
@@ -97,6 +109,28 @@ abstract class Metadriven extends Stateful {
     } else {
       return false;
     }
+  }
+
+  /**
+   * Get MySQL Options of an Enum/Set Property
+   *
+   * @param string $property
+   *   Property name
+   * @param string $class
+   *   Class name
+   * @return array
+   *   Array of acceptable values
+   */
+  protected static function _getPropertyOptions($property, $class) {
+    $type = self::_getPropertyType($property, $class);
+
+    if (strpos($type, 'enum') === 0 || strpos($type, 'set') === 0) {
+      $enum = array();
+      preg_match_all("/'(?P<values>[^']*)'/", $type, $enum);
+      return $enum['values'];
+    }
+
+    return array();
   }
 
   /**

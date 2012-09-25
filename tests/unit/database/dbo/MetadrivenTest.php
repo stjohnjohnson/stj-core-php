@@ -125,6 +125,7 @@ class MetadrivenTest extends \UnitTest {
    */
   public function metaKeys($class) {
     $this->assertEquals(MetadrivenMock::$classes[$class]['keys'], MetadrivenMock::leverage('_getMetaKeys', array($class)));
+    $this->assertEquals(reset(MetadrivenMock::$classes[$class]['keys']), MetadrivenMock::leverage('_getMetaKeys', array($class, true)));
   }
 
   /**
@@ -142,14 +143,19 @@ class MetadrivenTest extends \UnitTest {
    * @test
    * @group Metadriven
    * @group Metadriven.properties
-   * @covers STJ\Database\Dbo\Metadriven
+   * @covers STJ\Database\Dbo\Metadriven::isProperty
+   * @covers STJ\Database\Dbo\Metadriven::getProperties
+   * @covers STJ\Database\Dbo\Metadriven::_getPropertyType
+   * @covers STJ\Database\Dbo\Metadriven::_getPropertyOptions
    * @dataProvider propertyProvider
    */
-  public function properties($property, $is, $type) {
+  public function properties($property, $is, $type, $options = array()) {
     $foo = new FooBarMetaFake();
 
     $this->assertEquals($is, $foo->isProperty($property));
     $this->assertEquals($type, FooBarMetaFake::leverage('_getPropertyType', array($property, 'STJ\\Database\\Dbo\\FooBarMetaFake')));
+    $this->assertEquals($options, FooBarMetaFake::leverage('_getPropertyOptions', array($property, 'STJ\\Database\\Dbo\\FooBarMetaFake')));
+    $this->assertEquals($is, in_array($property, $foo->getProperties()));
   }
 
   /**
@@ -164,8 +170,8 @@ class MetadrivenTest extends \UnitTest {
     $cases[] = array('foo_id', true, 'integer');
     $cases[] = array('title', true, 'varchar(200)');
     $cases[] = array('is_active', true, 'tinyint(1)');
-    $cases[] = array('fav_food', true, "enum('apple','banana','orange')");
-    $cases[] = array('mood', true, "set('happy','sad','angry')");
+    $cases[] = array('fav_food', true, "enum('apple','banana','orange')", array('apple','banana','orange'));
+    $cases[] = array('mood', true, "set('happy','sad','angry')", array('happy','sad','angry'));
 
     // False
     $cases[] = array('banana', false, false);
