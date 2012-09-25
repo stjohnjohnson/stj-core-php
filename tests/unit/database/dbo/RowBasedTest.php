@@ -902,6 +902,7 @@ fooHMTE_id  INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
    * @group RowBased
    * @group RowBased.deleteSuccess
    * @covers STJ\Database\Dbo\RowBased::_performDelete
+   * @covers STJ\Database\Dbo\RowBased::deleteMany
    */
   public function deleteSuccess() {
     $foo = new FooBarRowBased();
@@ -934,6 +935,7 @@ fooHMTE_id  INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
    * @group RowBased
    * @group RowBased.deleteFailure
    * @covers STJ\Database\Dbo\RowBased::_performDelete
+   * @covers STJ\Database\Dbo\RowBased::deleteMany
    * @expectedException STJ\Database\Dbo\RowBasedException
    * @expectedExceptionMessage No unique criteria to load from
    */
@@ -997,6 +999,46 @@ fooHMTE_id  INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 
     // Ensure we got the right number
     $this->assertEquals(count($objects), 1);
+  }
+
+  /**
+   * @test
+   * @group RowBased
+   * @group RowBased.deleteMany
+   * @covers STJ\Database\Dbo\RowBased::deleteMany
+   */
+  public function deleteMany() {
+    // Create sample values
+    $titles = array();
+
+    $stmt = self::$pdo->prepare("INSERT INTO FOOBARROWBASED (`title`,`counter`) VALUES (?,?)");
+    foreach (range(1,20) as $i) {
+      $title = __METHOD__ . $i;
+      $stmt->execute(array($title, $i));
+      $titles[self::$pdo->lastInsertId()] = $title;
+    }
+
+    // Load objects
+    $objects = FooBarRowBased::loadMany(array('title' => array_values($titles)));
+
+    // Ensure we got the right number
+    $this->assertEquals(count($objects), count($titles));
+
+    // Check the objects
+    foreach ($objects as $object) {
+      $this->assertArrayHasKey($object->example_id, $titles);
+      $this->assertEquals($titles[$object->example_id], $object->title);
+      $this->assertFalse($object->isNew());
+    }
+
+    // Now delete half of them
+    FooBarRowBased::deleteMany(array('counter:gt' => 10));
+
+    // Load objects
+    $objects = FooBarRowBased::loadMany(array('title' => array_values($titles)));
+
+    // Ensure we got the right number
+    $this->assertEquals(count($objects), count($titles) / 2);
   }
 }
 
