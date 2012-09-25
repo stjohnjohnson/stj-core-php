@@ -9,6 +9,8 @@ use STJ\Core\Cache;
 
 /**
  * Associates class name to MySQL table
+ * 
+ * @see https://github.com/stjohnjohnson/stj-core-php
  */
 abstract class Metadriven extends Stateful {
     // Metadata about the tables

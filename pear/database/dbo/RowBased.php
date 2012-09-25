@@ -7,10 +7,11 @@ use Exception,
     ReflectionMethod;
 
 /**
- * DataBase Abstraction Layer with validation support
+ * Row Based Object
  *
- * A very awesome class that represents a database row as an actual object,
- * but doesn't restrict it to the boundaries of that DB.
+ * Represents a database row as an actual object
+ *
+ * @see https://github.com/stjohnjohnson/stj-core-php
  */
 abstract class RowBased extends Metadriven {
   protected static $_belongs_to = array();

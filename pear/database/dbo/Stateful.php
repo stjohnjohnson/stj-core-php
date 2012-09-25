@@ -8,6 +8,8 @@ use Exception;
  * Stateful Trackable Objects
  *
  * Allow loading, creating, updating, and deleting of objects to a storage engine
+ * 
+ * @see https://github.com/stjohnjohnson/stj-core-php
  */
 abstract class Stateful extends Trackable {
   // Is the object new

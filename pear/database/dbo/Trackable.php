@@ -6,6 +6,8 @@ use Exception;
 
 /**
  * Smart Object that keeps track of properties that have changed
+ *
+ * @see https://github.com/stjohnjohnson/stj-core-php
  */
 abstract class Trackable {
   // Clean values (from the DB)
