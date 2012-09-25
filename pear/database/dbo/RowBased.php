@@ -487,7 +487,7 @@ abstract class RowBased extends Metadriven {
 
     // Loop through classes
     $columns = array();
-    foreach ($classes as $class) {
+    foreach (array_unique($classes) as $class) {
       $fields = array_keys(static::_getMetaFields($class));
       $table = static::_getMetaTable($class);
 

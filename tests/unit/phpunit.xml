@@ -11,6 +11,10 @@
       <directory>./core</directory>
     </testsuite>
 
+    <testsuite name="Database Unit Tests">
+      <directory>./database</directory>
+    </testsuite>
+
     <testsuite name="MVC Unit Tests">
       <directory>./mvc</directory>
     </testsuite>
